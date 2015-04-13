@@ -1,0 +1,9 @@
+{
+    "realm": "SistCoop",
+    "realm-public-key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDB/k/bAvvZEIf4KGICYfll+2Gmtr+iYj3mruiOpncYy9a7bEvUk9AtqGxIOTS3gPZHl7HpsEHnETED3/IpvkzYFdKQD8Ttwu5RCyRPL/pql7CvIYXxvvcmCLzmsxuU36Zad8X4EHAzhZBPyMBnfABR4m3IP/FJN8fIYpYgKB3PCQIDAQAB",
+    "auth-server-url": "https://keycloak-sistcoopee.rhcloud.com/auth",
+    "ssl-required": "external",
+    "resource": "SistCoop_Caja",
+    "public-client": true,
+    "enable-cors": true
+}
