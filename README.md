@@ -26,7 +26,7 @@ puedes añadir este codigo en gulp/development
 Para instalarlo debes de ubicarte en la raiz del proyecto mean.io y despues ejecutar:
 
 ```sh
-$ git clone --branch master https://github.com/sistcoop-meaniofiles/keycloak.git packages/contrib/xenontheme
+$ git clone --branch master https://github.com/sistcoop-meaniofiles/keycloak.git packages/contrib/keycloak
 ```
 
 despues se debe actualizar las dependencias bower:
