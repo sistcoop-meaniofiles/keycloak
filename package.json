@@ -10,6 +10,10 @@
     "node": "0.10.x",
     "npm": "1.4.x"
   },
-  "dependencies": {},
+  "dependencies": {
+    "connect-keycloak": "^0.0.16",
+    "connect-mongo": "^0.8.1",
+    "express-session": "^1.11.1"
+  },
   "license": "MIT"
 }
