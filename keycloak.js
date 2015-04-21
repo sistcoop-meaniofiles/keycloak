@@ -11,7 +11,12 @@ var app = express();
 
 //store
 var connection = mongoose.createConnection();
-var memoryStore = new MongoStore({ mongooseConnection: connection });
+var memoryStore = new MongoStore(
+    {
+        mongooseConnection: connection,
+        ttl: 30 * 60
+    }
+);
 
 app.use( session({
     secret: '2fafb62e-3437-4bc3-b1cb-42f591d85c8f',
