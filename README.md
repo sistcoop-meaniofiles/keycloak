@@ -9,15 +9,15 @@ Este proyecto es mantenido por SistCoop S.A.C.
 ### Version
 1.0.0
 
-### TecnologÃ­as
+### Tecnologías
 
 Dependences:
 
 * [Keycloak] - Keycloak
 
-### InstalaciÃ³n
+### Instalación
 Tip:
-puedes aÃ±adir este codigo en gulp/development
+puedes añadir este codigo en gulp/development
 
 ```sh 
 !packages**/public/assets/lib/**
@@ -39,11 +39,11 @@ $ cd packages/contrib/keycloak
 $ bower update
 ```
 
-Se creara un paquete en mean.io. Este software estÃ¡ probado para ser publicado en mean.io 0.4.4
+Se creara un paquete en mean.io. Este software está probado para ser publicado en mean.io 0.4.4
 
 ### Development
 
-Â¿Te gustarÃ­a contribuir? Â¡MagnÃ­fico!
+¿Te gustaría contribuir? ¡Magnífico!
 
 Puedes descargar el proyecto y contactarse con nosotros.
 
