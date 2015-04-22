@@ -23,6 +23,7 @@ Keycloak.register(function(app, auth, database) {
     } ));
 
     //set auth middleware
+    auth.keycloak = connectKeycloak;
     auth.requiresLogin = connectKeycloak.protect();
     auth.requiresAdmin = connectKeycloak.protect('admin');
 
