@@ -4,49 +4,24 @@
 
 angular.module('mean.keycloak').config(function($httpProvider) {
     $httpProvider.interceptors.push('errorInterceptor');
-    $httpProvider.interceptors.push('keycloakAuthInterceptor');
+    $httpProvider.interceptors.push('authInterceptor');
 });
 
-angular.module('mean.keycloak').run(function($http, KeycloakAuth) {
-    $http.get('/keycloak/token').success(function(data) {
-        KeycloakAuth.authz.token = data;
-    });
-});
-
-angular.module('mean.keycloak').factory('KeycloakAuth', function() {
-
-    var Auth = {
-        authz: {
-            token: undefined,
-            updateToken: function(minValidity){
-            }
-        }
-    };
-
-    return Auth;
-});
-
-angular.module('mean.keycloak').factory('keycloakAuthInterceptor', function($q, KeycloakAuth) {
+angular.module('mean.keycloak').factory('authInterceptor', function($q, Auth) {
     return {
         request: function (config) {
             if (!config.url.match(/.html$/)) {
                 var deferred = $q.defer();
-                //if (KeycloakAuth.authz.token) {
-                 //   KeycloakAuth.authz.updateToken(5).success(function () {
-                      //  config.headers = config.headers || {};
-                       // config.headers.Authorization = 'Bearer ' + KeycloakAuth.authz.token;
+                if (Auth.authz.token) {
+                    Auth.authz.updateToken(5).success(function () {
+                        config.headers = config.headers || {};
+                        config.headers.Authorization = 'Bearer ' + Auth.authz.token;
 
                         deferred.resolve(config);
-                 //   }).error(function () {
-                 //       location.reload();
-                 //   });
-                //}
-                if (KeycloakAuth.authz.token){
-                    alert(JSON.stringify(KeycloakAuth));
-                    config.headers = config.headers || {};
-                    config.headers.Authorization = 'Bearer ' + KeycloakAuth.authz.token;
+                    }).error(function () {
+                        location.reload();
+                    });
                 }
-                deferred.resolve(config);
                 return deferred.promise;
             } else {
                 return config;
