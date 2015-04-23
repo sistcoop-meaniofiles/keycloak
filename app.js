@@ -17,7 +17,7 @@ Keycloak.register(function(app, auth, database) {
     Keycloak.routes(app, auth, database);
 
     //add libraries
-    Keycloak.aggregateAsset('js', '../lib/keycloak/dist/keycloak.js', {global:true,  weight: -4, group: 'footer'});
+    Keycloak.aggregateAsset('js', '../lib/keycloak/dist/keycloak.js', {global:true,  weight: -4, group: 'header'});
     Keycloak.aggregateAsset('js', '../js/keycloak.js', {global:true,  weight: -3, group: 'footer'});
 
     return Keycloak;

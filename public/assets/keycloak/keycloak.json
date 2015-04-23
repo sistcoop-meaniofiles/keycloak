@@ -1,11 +1,8 @@
 {
-  "realm": "demo",
-  "realm-public-key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCVeC6UPqxDNNVyRDICignvqWjG1Gn0zdF6yak0Cy23jh8/yMlxyVOr0Pcp9W0fngutI7PB8PmuWSrLr9KlEXUmHBeOeMtyZifdzVtQ/A7knXfhlDzAn2lP2m8spBir2kf5AvOAklXW7rNUU+2Oq+G/qBRLD8ZOizbg/HKXPU0REwIDAQAB",
-  "auth-server-url": "https://keycloak-sistcoopee.rhcloud.com/auth",
+  "realm": "sistcoop",
+  "realm-public-key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCFTkWVO1kQfpFA7N9Xegyq+dXG0S5MXQ/AW8iw6rStHqVvA9XB0Upia5fIeDHzRsPigDKPViI/24sUoMvebB2vysW38pZHBSzgUHcbqqGKLEstrhfx44JBm2j9bcDBH8cPe7Cu18T7/WF67rb+pr0eM1kn8xulbdYVPVGgiAnROQIDAQAB",
+  "auth-server-url": "http://localhost:8080/auth",
   "ssl-required": "external",
-  "resource": "keycloak-nodejs",
-  "credentials": {
-    "secret": "2fafb62e-3437-4bc3-b1cb-42f591d85c8f"
-  },
-  "use-resource-role-mappings": true
+  "resource": "sistcoop_cajero",
+  "public-client": true
 }
