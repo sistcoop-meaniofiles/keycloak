@@ -17,7 +17,8 @@ angular.module('mean.keycloak').config(['$stateProvider',
         $stateProvider
             .state('keycloak', {
                 url: '/keycloak',
-                templateUrl: 'keycloak/views/index.html'
+                templateUrl: 'keycloak/views/index.html',
+                abstract: true
             }).state('keycloak.auth', {
                 url: '/auth',
                 templateUrl: 'keycloak/views/index.html'
@@ -27,6 +28,14 @@ angular.module('mean.keycloak').config(['$stateProvider',
                 resolve: {
                     loggedin: checkLoggedOut
                 }
+            }).state('keycloak.auth.logout', {
+                url: '/logout',
+                template: '<div>logout</div>',
+                controller: 'KeycloakLogoutController'
+            }).state('keycloak.auth.accountManagement', {
+                url: '/accountManagement',
+                template: '<div>account management</div>',
+                controller: 'KeycloakAccountManagementController'
             });
     }
 ]);
