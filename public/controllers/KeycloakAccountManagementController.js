@@ -3,7 +3,7 @@
 /* jshint -W098 */
 angular.module('mean.keycloak').controller('KeycloakAccountManagementController', ['$scope', 'Auth', 'SGUsuarioKeycloak',
     function($scope, Auth, SGUsuarioKeycloak) {
-        
+
         $scope.user = {
             username: Auth.authz.idTokenParsed.preferred_username,
             roles: []
