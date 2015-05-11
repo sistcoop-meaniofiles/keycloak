@@ -3,12 +3,12 @@
 /* jshint -W098 */
 angular.module('mean.keycloak').controller('KeycloakAccountManagementController', ['$scope', 'Auth', 'SGUsuarioKeycloak',
     function($scope, Auth, SGUsuarioKeycloak) {
-        //Auth.authz.accountManagement();
+        
         $scope.user = {
             username: Auth.authz.idTokenParsed.preferred_username,
             roles: []
         };
-        
+
         $scope.loadRoles = function(){
             SGUsuarioKeycloak.$roleMappings($scope.user.username).then(function(response){
                 var realmRoles = response.realmMappings;
