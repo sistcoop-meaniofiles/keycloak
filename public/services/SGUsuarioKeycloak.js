@@ -25,7 +25,7 @@ angular.module('mean.keycloak').factory('KeycloakRestangular', ['Restangular', '
     });
 }]);
 
-angular.module('mean.keycloak').factory('SGUsuario', ['KeycloakRestangular',  function(KeycloakRestangular) {
+angular.module('mean.keycloak').factory('SGUsuarioKeycloak', ['KeycloakRestangular',  function(KeycloakRestangular) {
 
     var url = "users";
 
