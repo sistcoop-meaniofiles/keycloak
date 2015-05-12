@@ -1,12 +1,17 @@
 'use strict';
 
 /* jshint -W098 */
-angular.module('mean.keycloak').controller('KeycloakAccountManagementController', ['$scope', 'Auth', 'SGUsuarioKeycloak',
-    function($scope, Auth, SGUsuarioKeycloak) {
+angular.module('mean.keycloak').controller('KeycloakAccountManagementController', ['$scope', 'Auth', 'SGUsuarioKeycloak', 'SGSession',
+    function($scope, Auth, SGUsuarioKeycloak, SGSession) {
 
         $scope.user = {
             username: Auth.authz.idTokenParsed.preferred_username,
             roles: []
+        };
+
+        $scope.session = {
+            sucursal: SGSession.sucursal,
+            agencia: SGSession.agencia
         };
 
         $scope.loadRoles = function(){
