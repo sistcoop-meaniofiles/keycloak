@@ -30,7 +30,7 @@ angular.module('mean.keycloak').config(['$stateProvider',
                 }
             }).state('keycloak.auth.logout', {
                 url: '/logout',
-                template: '<div>logout</div>',
+                template: '<div></div>',
                 controller: 'KeycloakLogoutController'
             }).state('keycloak.auth.account', {
                 url: '/account',
