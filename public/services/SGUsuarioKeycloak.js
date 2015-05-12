@@ -38,6 +38,9 @@ angular.module('mean.keycloak').factory('SGUsuarioKeycloak', ['KeycloakRestangul
         },
         $roleMappings : function(username){
             return KeycloakRestangular.one(url + '/' + username + '/role-mappings').get();
+        },
+        $realmRoles : function(username){
+            return KeycloakRestangular.one(url + '/' + username + '/role-mappings/realm').get();
         }
 
     };

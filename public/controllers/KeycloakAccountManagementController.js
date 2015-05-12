@@ -10,12 +10,9 @@ angular.module('mean.keycloak').controller('KeycloakAccountManagementController'
         };
 
         $scope.loadRoles = function(){
-            SGUsuarioKeycloak.$roleMappings($scope.user.username).then(function(response){
-                var realmRoles = response.realmMappings;
-                for(var i=0; i<realmRoles.length; i++){
-                    if(realmRoles[i].name !== 'manage-account' && realmRoles[i].name !== 'view-profile'){
-                        $scope.user.roles.push(realmRoles[i].name);
-                    }
+            SGUsuarioKeycloak.$realmRoles($scope.user.username).then(function(response){
+                for(var i=0; i<response.length; i++){
+                    $scope.user.roles.push(response[i].name);
                 }
             });
         };
