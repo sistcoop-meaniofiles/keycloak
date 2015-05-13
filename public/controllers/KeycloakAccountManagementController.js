@@ -10,15 +10,10 @@ angular.module('mean.keycloak').controller('KeycloakAccountManagementController'
         };
 
         $scope.session = {
-            sucursal: SGSession.sucursal,
-            agencia: SGSession.getAgencia(),
-            trabajadorCaja: SGSession.trabajadorCaja
-        };
-
-        console.log(SGSession);
-
-        $scope.imprimir = function(){
-            console.log(SGSession);
+            sucursal: undefined,
+            agencia: undefined,
+            trabajadorCaja: undefined,
+            caja: undefined
         };
 
         $scope.loadRoles = function () {
@@ -29,6 +24,36 @@ angular.module('mean.keycloak').controller('KeycloakAccountManagementController'
             });
         };
         $scope.loadRoles();
+
+
+
+        $scope.loadSucursal = function () {
+            SGSession.getSucursal().then(function (response) {
+                $scope.session.sucursal = response;
+            });
+        };
+        $scope.loadSucursal();
+
+        $scope.loadAgencia = function () {
+            SGSession.getAgencia().then(function (response) {
+                $scope.session.agencia = response;
+            });
+        };
+        $scope.loadAgencia();
+
+        $scope.loadTrabajadorCaja = function () {
+            SGSession.getTrabajadorCaja().then(function (response) {
+                $scope.session.trabajadorCaja = response;
+            });
+        };
+        $scope.loadTrabajadorCaja();
+
+        $scope.loadCaja = function () {
+            SGSession.getCaja().then(function (response) {
+                $scope.session.caja = response;
+            });
+        };
+        $scope.loadCaja();
 
     }
 ]);
