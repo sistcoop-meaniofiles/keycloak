@@ -17,78 +17,79 @@ angular.module('mean.keycloak').controller('KeycloakAccountManagementController'
         };
 
         $scope.loadRoles = function () {
-            SGUsuarioKeycloak.$realmRoles($scope.user.username).then(function (response) {
-                for (var i = 0; i < response.length; i++) {
-                    $scope.user.roles.push(response[i].name);
-                }
-
-                //verificar si el rol CAJERO tiene una caja asignada
-                if($scope.user.roles.indexOf('CAJERO') != -1) {
-                    var listener = $scope.$watch('session.caja', function(newValue) {
-                        if(angular.isUndefined(newValue)){
-                            toastr.error('CAJA no cargada. Podria ocasionar un mal funcionamiento del sistema', '', {
-                                closeButton: true,
-                                timeOut: 0,
-                                positionClass: 'toast-top-center'
-                            });
-                        }
-                    }, true);
-                }
-
-            });
+            var realmRoles = Auth.authz.realmAccess.roles;
+            for (var i = 0; i < realmRoles.length; i++) {
+                $scope.user.roles.push(realmRoles[i]);
+            }
         };
         $scope.loadRoles();
 
+        //si se está en el master no es necesario cargar los datos
+        //de trabajadores, caja, agencia, sucursal
+        if (Auth.authz.realm != 'sistcoop-master') {
 
+            //cargar sucursal
+            $scope.loadSucursal = function () {
+                SGSession.getSucursal().then(function (response) {
+                    $scope.session.sucursal = response;
+                    if (angular.isUndefined($scope.session.sucursal)) {
+                        toastr.error('SUCURSAL no cargada. Podria ocasionar un mal funcionamiento del sistema', '', {
+                            closeButton: true,
+                            timeOut: 0,
+                            positionClass: 'toast-top-center'
+                        });
+                    }
+                });
+            };
+            $scope.loadSucursal();
 
-        $scope.loadSucursal = function () {
-            SGSession.getSucursal().then(function (response) {
-                $scope.session.sucursal = response;
-                if(angular.isUndefined($scope.session.sucursal)){
-                    toastr.error('SUCURSAL no cargada. Podria ocasionar un mal funcionamiento del sistema', '', {
-                        closeButton: true,
-                        timeOut: 0,
-                        positionClass: 'toast-top-center'
-                    });
-                }
-            });
-        };
-        $scope.loadSucursal();
+            //cargar agencia
+            $scope.loadAgencia = function () {
+                SGSession.getAgencia().then(function (response) {
+                    $scope.session.agencia = response;
+                    if (angular.isUndefined($scope.session.agencia)) {
+                        toastr.error('AGENCIA no cargada. Podria ocasionar un mal funcionamiento del sistema', '', {
+                            closeButton: true,
+                            timeOut: 0,
+                            positionClass: 'toast-top-center'
+                        });
+                    }
+                });
+            };
+            $scope.loadAgencia();
 
-        $scope.loadAgencia = function () {
-            SGSession.getAgencia().then(function (response) {
-                $scope.session.agencia = response;
-                if(angular.isUndefined($scope.session.agencia)){
-                    toastr.error('AGENCIA no cargada. Podria ocasionar un mal funcionamiento del sistema', '', {
-                        closeButton: true,
-                        timeOut: 0,
-                        positionClass: 'toast-top-center'
-                    });
-                }
-            });
-        };
-        $scope.loadAgencia();
+            //cargar trabajadorCaja
+            $scope.loadTrabajadorCaja = function () {
+                SGSession.getTrabajadorCaja().then(function (response) {
+                    $scope.session.trabajadorCaja = response;
+                    if (angular.isUndefined($scope.session.trabajadorCaja)) {
+                        toastr.error('TRABAJADOR no cargado. Podria ocasionar un mal funcionamiento del sistema', '', {
+                            closeButton: true,
+                            timeOut: 0,
+                            positionClass: 'toast-top-center'
+                        });
+                    }
+                });
+            };
+            $scope.loadTrabajadorCaja();
 
-        $scope.loadTrabajadorCaja = function () {
-            SGSession.getTrabajadorCaja().then(function (response) {
-                $scope.session.trabajadorCaja = response;
-                if(angular.isUndefined($scope.session.trabajadorCaja)){
-                    toastr.error('TRABAJADOR no cargado. Podria ocasionar un mal funcionamiento del sistema', '', {
-                        closeButton: true,
-                        timeOut: 0,
-                        positionClass: 'toast-top-center'
-                    });
-                }
-            });
-        };
-        $scope.loadTrabajadorCaja();
+            //Cargar caja
+            $scope.loadCaja = function () {
+                SGSession.getCaja().then(function (response) {
+                    $scope.session.caja = response;
 
-        $scope.loadCaja = function () {
-            SGSession.getCaja().then(function (response) {
-                $scope.session.caja = response;
-            });
-        };
-        $scope.loadCaja();
+                    if($scope.user.roles.indexOf('CAJERO') != -1 && angular.isUndefined($scope.session.caja)) {
+                        toastr.error('CAJA no cargada. Podria ocasionar un mal funcionamiento del sistema', '', {
+                            closeButton: true,
+                            timeOut: 0,
+                            positionClass: 'toast-top-center'
+                        });
+                    }
+                });
+            };
+            $scope.loadCaja();
+
+        }
 
     }
 ]);
